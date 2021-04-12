@@ -1,3 +1,1 @@
-Rails.application.routes.draw do
- resources :articles, only: %i[index show]
-end
+Rails.application.routes.draw { resources :articles, only: %i[index show] }

@@ -4,15 +4,15 @@ RSpec.describe Article, type: :model do
   # hash prefix used to denote testing instances
   # dot prefix used to denote testing class
   describe '#validations' do
-    let(:article) { build(:article) }  
-    
+    let(:article) { build(:article) }
+
     it 'tests that factory is valid' do
-        # article = Article.create({title: 'Sample article', content: 'Sample content' })
-        expect(article).to be_valid # article-valid? == true
-        article.save!
-        another_article = build(:article)
-        expect(another_article).to be_valid
-      end
+      # article = Article.create({title: 'Sample article', content: 'Sample content' })
+      expect(article).to be_valid # article-valid? == true
+      article.save!
+      another_article = build(:article)
+      expect(another_article).to be_valid
+    end
 
     it 'has an invalid title' do
       article.title = ''
@@ -26,23 +26,18 @@ RSpec.describe Article, type: :model do
       expect(article.errors[:content]).to include("can't be blank")
     end
 
-
     it 'has invalid slug' do
       article.slug = ''
       expect(article).not_to be_valid
       expect(article.errors[:slug]).to include("can't be blank")
     end
 
-
-    it 'validates the uniquness of the slug' do 
+    it 'validates the uniquness of the slug' do
       article1 = create(:article)
       expect(article1).to be_valid
       article2 = build(:article, slug: article1.slug)
       expect(article2).not_to be_valid
       expect(article2.errors[:slug]).to include('has already been taken')
     end
-
   end
-
-  
 end
