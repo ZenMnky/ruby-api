@@ -17,7 +17,7 @@ RSpec.describe ArticlesController do
       expected = json_data.first
       aggregate_failures do
         expect(expected[:id]).to eq(article.id.to_s)
-        expect(expected[:type]).to eq('article')
+        expect(expected[:type]).to eq('articles')
         expect(expected[:attributes]).to eq(
             title: article.title,
             content: article.content,
