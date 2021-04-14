@@ -6,7 +6,9 @@ class ArticlesController < ApplicationController
       params: pagination_params,
       base_url: request.url
     )
-    render json: serializer.new(paginated.items), status: :ok
+
+    options = { meta: paginated.meta.to_h, links: paginated.links.to_h }
+    render json: serializer.new(paginated.items, options), status: :ok
   end
 
   def serializer
